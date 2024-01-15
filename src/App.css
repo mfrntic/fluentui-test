@@ -1,38 +1,73 @@
+
+/* 
+Set the main wrapper component to 
+take up the entire height of the page
+ */
+ .App {
+  min-height: 100vh; 
+}
+/*
+To use Flexbox we need to set the display
+setting of the container component to flex.
+The we set the direction of the wrapped 
+components. By default flexbox will order 
+them by row, but we can also tell it to do
+it by column.
+*/
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+/*
+Something similar is done to the body 
+element, except we order the wrapped 
+component as rows.
+*/
+.App .body {
+  /* display: flex;
+  flex-direction: row;
+  flex: 1 */
+}
+/*
+Flexbox let's us reorder the way the 
+elements are placed inside the wrapper
+component. Using the order rule, we move
+the sidebar to the left of the content 
+component. We also set its width to 12em
+and set its flex propertires so it doesn't
+grow or shrink with the rest of the page.
+*/
+ 
+/*
+Lastly we give some custom height to our 
+header and footer components.
+*/
+.App .header,
+.App .footer {
+  /* height: 4em; */
+  padding: 15px;
+  display: flex;
+  
 }
 
-.App-link {
-  color: #61dafb;
+.headerTitle{
+  display: inline-block;
+  margin-right: 2em;
+  font-size: 1.4em;
+  font-weight: 500;
+  padding-top: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.body{
+  display: flex;
+  display: "grid";
+  justify-content: "flex-start";
+  align-items: "flex-start";
+  grid-row-gap: 5px;
+  grid-auto-rows: "max-content";
+  flex: 1;
+}
+
+.body .content{
+  padding: 1em;
 }
