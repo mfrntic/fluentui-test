@@ -1,79 +1,36 @@
 import './App.css';
-import { Button, MenuButton, tokens, makeStyles, mergeClasses } from '@fluentui/react-components';
+import Footer from './components/Footer';
 
-import {
-  DrawerBody,
-  DrawerHeader,
-  DrawerHeaderTitle,
-  Drawer,
-  DrawerProps,
-
-  Label,
-  Radio,
-  RadioGroup,
-  shorthands,
-  useId,
-} from "@fluentui/react-components";
-import { Dismiss24Regular } from "@fluentui/react-icons";
+import MainMenu from './components/MainMenu';
+import Sidebar from './components/Sidebar';
 import { useState } from 'react';
 
-const useStyle = makeStyles({
-  header: { backgroundColor: tokens.colorBrandBackground, color: tokens.colorBrandBackgroundInverted },
-  footer: { backgroundColor: tokens.colorNeutralBackgroundInverted, color: tokens.colorNeutralBackground1 },
-  sidebar: { backgroundColor: tokens.colorNeutralBackground4 }
-})
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import HomePage from './pages/HomePage';
+
+const router = createBrowserRouter([
+  { path: "/", element: <HomePage /> }
+])
 
 function App() {
-  const style = useStyle();
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
+
     <div className="App">
-      <div className={mergeClasses('header', style.header)}>
-        <div className="headerTitle"> SSPP</div>
-        <MenuButton appearance='primary'>Izbornik 1</MenuButton>
-        <MenuButton appearance='primary'>Izbornik 2</MenuButton>
-        <MenuButton appearance='primary'>Izbornik 3</MenuButton>
-        <Button appearance='primary'>Izbornik 4</Button>
-      </div>
+      <MainMenu />
       <div className="body">
-        <Drawer
-          type="inline"
-          separator
-          open={isOpen}
-          onOpenChange={(_, { open }) => setIsOpen(open)}
-        >
-          <DrawerHeader>
-            <DrawerHeaderTitle
-              action={
-                <Button
-                  appearance="subtle"
-                  aria-label="Close"
-                  icon={<Dismiss24Regular />}
-                  onClick={() => setIsOpen(false)}
-                />
-              }
-            >
-              Default Drawer
-            </DrawerHeaderTitle>
-          </DrawerHeader>
-
-          <DrawerBody>
-            <p>Drawer content</p>
-          </DrawerBody>
-        </Drawer>
-
+        <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
         <div className="content">
+          <RouterProvider router={router}>
 
-          Body content
-          <Button appearance='primary' onClick={() => setIsOpen(a => !a)}>Toggle Menu</Button>
-
+          </RouterProvider>
         </div>
-
       </div>
-      <div className={mergeClasses('footer', style.footer)}>Footer</div>
+      <Footer />
     </div>
+
   );
 }
 

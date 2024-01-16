@@ -1,10 +1,9 @@
-
 /* 
 Set the main wrapper component to 
 take up the entire height of the page
  */
- .App {
-  min-height: 100vh; 
+.App {
+  min-height: 100vh;
 }
 /*
 To use Flexbox we need to set the display
@@ -37,28 +36,24 @@ component. We also set its width to 12em
 and set its flex propertires so it doesn't
 grow or shrink with the rest of the page.
 */
- 
+
 /*
 Lastly we give some custom height to our 
 header and footer components.
 */
-.App .header,
+.App .header
+{
+  padding: 10px;
+}
 .App .footer {
   /* height: 4em; */
-  padding: 15px;
   display: flex;
-  
+  align-items: center;
+  justify-content: center; 
+  padding: 15px;
 }
 
-.headerTitle{
-  display: inline-block;
-  margin-right: 2em;
-  font-size: 1.4em;
-  font-weight: 500;
-  padding-top: 5px;
-}
-
-.body{
+.body {
   display: flex;
   display: "grid";
   justify-content: "flex-start";
@@ -66,8 +61,17 @@ header and footer components.
   grid-row-gap: 5px;
   grid-auto-rows: "max-content";
   flex: 1;
+  overflow-y: auto;
+  max-height: calc(100vh - 110px);
 }
 
-.body .content{
+.body .content {
   padding: 1em;
+  background-color: whitesmoke;
+  flex: 1;
+}
+
+.padding-horizontal-10 {
+  display: inline-block;
+  padding: 0 10px;
 }
